@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Potterhead - O Mundo Mágico</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- NAVEGAÇÃO -->
+    <header>
+        <div class="logo">⚡ Potterhead</div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir Menu">☰</button>
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="#inicio" class="nav-link">Início</a></li>
+                <li><a href="#chapeu" class="nav-link">Chapéu Seletor</a></li>
+                <li><a href="#casas" class="nav-link">As Casas</a></li>
+                <li><a href="#prompts" class="nav-link">Prompts Mágicos</a></li>
+                <li><a href="#curiosidades" class="nav-link">Curiosidades</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Bem-vindo a Hogwarts</h1>
+            <p>Descubra a sua verdadeira casa de Hogwarts com a magia do Chapéu Seletor!</p>
+            <a href="#chapeu" class="btn">Ser Selecionado Agora</a>
+        </div>
+    </section>
+
+    <!-- CHAPÉU SELETOR INTERATIVO -->
+    <section id="chapeu" class="container chapeu-section">
+        <h2>🎩 O Chapéu Seletor</h2>
+        <p class="sub-txt">Aperte o chapéu para revelar a qual casa você pertence ou faça o teste detalhado!</p>
+        
+        <div class="chapeu-interactive-box">
+            <!-- Botão Principal de Revelação Instantânea -->
+            <div id="instant-sort-area">
+                <div class="hat-icon-btn" id="btn-chapeu-instant" title="Clique no Chapéu Mágico!">
+                    🧙‍♂️
+                </div>
+                <button id="btn-revelar-casa" class="btn btn-chapeu">✨ Aperte Aqui para Descobrir sua Casa!</button>
+            </div>
+
+            <!-- Animação do Chapéu Pensando -->
+            <div id="thinking-box" class="thinking-box hidden">
+                <div class="wand-spinner">⚡</div>
+                <p id="thinking-text">Hummm... difícil... muito difícil...</p>
+            </div>
+
+            <!-- Resultado da Seleção Instantânea -->
+            <div id="resultado-instantaneo" class="resultado-box hidden">
+                <div class="house-badge" id="badge-casa">🦁</div>
+                <h3 id="casa-nome"></h3>
+                <p id="casa-quote" class="quote-text"></p>
+                <p id="casa-desc"></p>
+                <div class="action-buttons">
+                    <button id="btn-tentar-novamente" class="btn btn-secundario">Tentar Novamente</button>
+                    <button id="btn-modo-quiz" class="btn btn-secundario">Fazer Teste com Perguntas</button>
+                </div>
+            </div>
+
+            <!-- Modo Quiz de Perguntas -->
+            <div id="quiz-container" class="quiz-box hidden">
+                <!-- Injetado via Javascript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- AS QUATRO CASAS -->
+    <section id="casas" class="container">
+        <h2>As Quatro Casas de Hogwarts</h2>
+        <div class="cards-grid">
+            <div class="card grifinoria">
+                <div class="card-icon">🦁</div>
+                <h3>Grifinória</h3>
+                <p>Valoriza a coragem, ousadia, bravura e cavalheirismo. Seus membros enfrentam o perigo de frente.</p>
+                <span class="house-count" id="count-grifinoria">Estudantes: 0</span>
+            </div>
+            <div class="card sonserina">
+                <div class="card-icon">🐍</div>
+                <h3>Sonserina</h3>
+                <p>Valoriza a ambição, astúcia, liderança e desenvoltura. Seus membros buscam a grandeza acima de tudo.</p>
+                <span class="house-count" id="count-sonserina">Estudantes: 0</span>
+            </div>
+            <div class="card corvinal">
+                <div class="card-icon">🦅</div>
+                <h3>Corvinal</h3>
+                <p>Valoriza a inteligência, sabedoria, criatividade e originalidade. O aprendizado é sua maior força.</p>
+                <span class="house-count" id="count-corvinal">Estudantes: 0</span>
+            </div>
+            <div class="card lufa-lufa">
+                <div class="card-icon">🦡</div>
+                <h3>Lufa-Lufa</h3>
+                <p>Valoriza a lealdade, dedicação, paciência e o trabalho árduo. É a casa mais acolhedora de todas.</p>
+                <span class="house-count" id="count-lufa-lufa">Estudantes: 0</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- GERADOR DE PROMPTS MÁGICOS -->
+    <section id="prompts" class="container prompts-section">
+        <h2>📜 Gerador de Prompts Mágicos</h2>
+        <p class="sub-txt">Gere prompts incríveis para criar histórias, imagens ou conversar sobre Harry Potter!</p>
+        
+        <div class="prompt-box">
+            <div class="prompt-controls">
+                <button class="btn-filtro active" data-type="historia">Histórias & RPG</button>
+                <button class="btn-filtro" data-type="imagem">Arte & Imagem</button>
+                <button class="btn-filtro" data-type="debate">Debates Mágicos</button>
+            </div>
+            
+            <div class="prompt-display">
+                <p id="prompt-output">Clique no botão abaixo para gerar um prompt temático!</p>
+            </div>
+            
+            <div class="prompt-actions">
+                <button id="btn-gerar-prompt" class="btn">Gerar Novo Prompt</button>
+                <button id="btn-copiar-prompt" class="btn btn-secundario">Copiar Prompt 📋</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CURIOSIDADES -->
+    <section id="curiosidades" class="container">
+        <h2>Curiosidades do Mundo Bruxo</h2>
+        
+        <div class="filtros">
+            <button class="btn-filtro-curio active" data-categoria="todas">Todas</button>
+            <button class="btn-filtro-curio" data-categoria="personagens">Personagens</button>
+            <button class="btn-filtro-curio" data-categoria="segredos">Segredos</button>
+        </div>
+
+        <div class="curiosidades-grid">
+            <div class="curio-card" data-cat="personagens">
+                <p>⚡ <strong>O Patrono do Rony:</strong> O patrono de Rony é um Jack Russell Terrier, cão famoso por perseguir lontras — e o patrono da Hermione é exatamente uma lontra!</p>
+            </div>
+            <div class="curio-card" data-cat="segredos">
+                <p>⚡ <strong>Os Dementadores:</strong> J.K. Rowling criou os Dementadores baseando-se no período em que sofreu de depressão profunda.</p>
+            </div>
+            <div class="curio-card" data-cat="personagens">
+                <p>⚡ <strong>Voldemort:</strong> Tom Riddle tinha 71 anos quando morreu na Batalha de Hogwarts.</p>
+            </div>
+            <div class="curio-card" data-cat="segredos">
+                <p>⚡ <strong>Plataforma 9 ¾:</strong> No mundo real, a estação de King's Cross em Londres possui uma placa comemorativa da Plataforma 9 ¾ com um carrinho atravessando a parede.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <p>⚡ Criado por Fãs para Fãs | Feito para GitHub Pages | Harry Potter é marca registrada da Warner Bros.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
